@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 ini_set('log_errors', 1);
 ini_set('error_log', '/var/log/php_errors.log');
 session_start();
-include_once("../inc/function.inc");
+include_once(__DIR__. "/../inc/function.inc");
 if (isset($_POST['id'])) {
     $ID = mysqli_real_escape_string($con,$_POST['id']);
 }

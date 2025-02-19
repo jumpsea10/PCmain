@@ -5,7 +5,7 @@ ini_set('log_errors', 1);
 ini_set('error_log', '/var/log/php_errors.log');
 
 session_start();
-include_once("inc/head.inc");
+include_once(__DIR__. "/../inc/head.inc");
 $login_error_msg = $_SESSION['login_error'] ?? null;
 $register_error_msg = $_SESSION['register_error'] ?? null;
 unset($_SESSION['register_error']);
