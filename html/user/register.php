@@ -23,7 +23,7 @@ if ($col) {
     // ランダムな英数字の生成
     $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
     $ac_key = substr(str_shuffle($str), 0, 10);
-    mysql_query("INSERT INTO user (mail,pwd_hash,register_datetime,ac_key) VALUES ('{$mail}','{$pwd_hash}','{$datetime}','{$ac_key}')");
+    mysql_query("INSERT INTO user (mail,pwd_hash,register_datetime,user_ac_key) VALUES ('{$mail}','{$pwd_hash}','{$datetime}','{$ac_key}')");
     $_SESSION['user_ac_key'] = $ac_key;
 }
 ?>
