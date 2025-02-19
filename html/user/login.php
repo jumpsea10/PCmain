@@ -11,7 +11,7 @@ $register_error_msg = $_SESSION['register_error'] ?? null;
 unset($_SESSION['register_error']);
 unset($_SESSION['login_error']);
 unset($_SESSION['user_ac_key']);
-$previousPage = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '#';
+$previousPage = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $_ENV['URL_USER_INDEX'];
 ?>
     <div class="login-container">
         <h1>ログイン</h1>
