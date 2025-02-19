@@ -1,0 +1,31 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main  # `main` ブランチにプッシュすると自動デプロイ
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚀 リポジトリをチェックアウト
+        uses: actions/checkout@v3
+
+      - name: 🔑 SSH キーを設定
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 3.27.216.5 >> ~/.ssh/known_hosts
+
+      - name: 📂 EC2 にデプロイ
+        run: |
+          ssh -i ~/.ssh/id_rsa ec2-user@3.27.216.5 << 'EOF'
+          cd /var/www/html/PCmain
+          git pull origin main
+          composer install --no-dev --optimize-autoloader
+          php artisan migrate --force
+          sudo systemctl restart httpd
+          EOF
