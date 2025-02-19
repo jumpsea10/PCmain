@@ -3,8 +3,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('log_errors', 1);
 ini_set('error_log', '/var/log/php_errors.log');
-
-include_once(__DIR__. "/../inc/login_head.inc");
+include_once(__DIR__. "/../inc/def.inc");
+include_once(__DIR__. "/../inc/function.inc");
 session_start();
 if (isset($_POST['mail'])) {
     $mail = mysqli_real_escape_string($_POST["mail"]);
