@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once("/var/www/html/inc/def.inc");
-include_once("/var/www/html/inc/function.inc");
+include_once("../inc/def.inc");
+include_once("../inc/function.inc");
 $login_error_msg = $_SESSION['login_err'] ?? null;
 unset($_SESSION['login_err']); 
 unset($_SESSION['operator_ac_key']);

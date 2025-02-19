@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("/var/www/html/inc/function.inc");
+include_once("../inc/function.inc");
 if (isset($_POST['id'])) {
     $ID = mysqli_real_escape_string($con,$_POST['id']);
 }

@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once("./inc/def.inc");
-include_once("./inc/function.inc");
+include_once("../inc/def.inc");
+include_once("../inc/function.inc");
 $is_exist = 0;
 if (isset($_SESSION['operator_ac_key'])) {
     $ac_key = $_SESSION['operator_ac_key'];
