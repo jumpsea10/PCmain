@@ -52,7 +52,7 @@ if (isset($_POST['request'])) {
         <?php } else { ?>
             <p style="color: green; font-size: 17px;">ゲストユーザです。</p>
         <?php } ?>
-        <p style="display: <?php echo( $is_request === 1 ? 'block':'none');?>; color:darkcyan">
+        <p style="display: <?php echo( $is_request == 1 ? 'block':'none');?>; color:darkcyan">
             *リクエストが送信されました。
         </p>
         <?php $is_request = 0; ?>
@@ -122,4 +122,4 @@ if (isset($_POST['request'])) {
 
 </script>
 
-<?php include_once("inc/foot.inc");?>
+<?php include_once(__DIR__. "/../inc/foot.inc");?>

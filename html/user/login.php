@@ -71,4 +71,4 @@ $previousPage = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '#'
 
 
     </script>
-<?php include_once("inc/foot.inc");?>
+<?php include_once(__DIR__. "/../inc/foot.inc");?>

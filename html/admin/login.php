@@ -40,4 +40,4 @@ unset($_SESSION['operator_ac_key']);
 
 
     </script>
-<?php include_once("inc/foot.inc");?>
+<?php include_once(__DIR__. "/../inc/foot.inc");?>
