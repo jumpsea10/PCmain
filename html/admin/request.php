@@ -146,4 +146,4 @@ $rst = mysql_query("SELECT * FROM figure_request WHERE is_ok = 0");
 
 </script>
 
-<?php include_once("inc/foot.inc");?>
+<?php include_once(__DIR__. "/../inc/foot.inc");?>

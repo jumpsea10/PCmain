@@ -263,4 +263,4 @@ $max_pages = mysqli_num_rows($figures_result)/20+1;
 
 
 </script>
-<?php include_once("inc/foot.inc");?>
+<?php include_once(__DIR__. "/..inc/foot.inc");?>
