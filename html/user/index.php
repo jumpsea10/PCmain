@@ -19,7 +19,7 @@ if (isset($_SESSION['user_ac_key'])) {
 //重心の投票後の処理
 if (isset($_POST["gravity_point"])) {
     $gp = $_gravity_to_english[$_gravity_point[$_POST["gravity_point"]]];
-    $figure_id = mysqli_real_escape_string($_POST["vote_figure_id"]);
+    $figure_id = mysqli_real_escape_string($con,$_POST["vote_figure_id"]);
     $_SESSION[$figure_id] = 1;
     $rst = mysql_query("SELECT '$gp' FROM figure WHERE figure_id = '$figure_id'");
     $col = mysqli_fetch_assoc($rst);

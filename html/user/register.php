@@ -7,7 +7,7 @@ include_once(__DIR__. "/../inc/def.inc");
 include_once(__DIR__. "/../inc/function.inc");
 session_start();
 if (isset($_POST['mail'])) {
-    $mail = mysqli_real_escape_string($_POST["mail"]);
+    $mail = mysqli_real_escape_string($con,$_POST["mail"]);
     $rst = mysql_query("SELECT * FROM user WHERE mail = '$mail' ");
     $col = mysqli_fetch_assoc($rst);
 }
