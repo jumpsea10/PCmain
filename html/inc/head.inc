@@ -1,6 +1,6 @@
 <?php
-include_once("/var/www/html/inc/def.inc");
-include_once("/var/www/html/inc/function.inc");
+include_once("./def.inc");
+include_once("./function.inc");
 ?>
 <!DOCTYPE html>
 <html lang="ja">
