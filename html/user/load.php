@@ -5,7 +5,7 @@ ini_set('log_errors', 1);
 ini_set('error_log', '/var/log/php_errors.log');
 
 session_start();
-include_once("/var/www/html/inc/function.inc");
+include_once(__DIR__. "/../inc/function.inc");
 unset($_SESSION['user_ac_key']);
 if (isset($_POST['mail'])) {
     $mail = mysqli_real_escape_string($con,$_POST['mail']);

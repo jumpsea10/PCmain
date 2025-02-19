@@ -5,7 +5,7 @@ ini_set('log_errors', 1);
 ini_set('error_log', '/var/log/php_errors.log');
 
 session_start();
-include_once("inc/head.inc");
+include_once(__DIR__. "/../inc/head.inc");
 $is_exist = 0;
 if (isset($_SESSION['user_ac_key'])) {
     $ac_key = $_SESSION['user_ac_key'];
