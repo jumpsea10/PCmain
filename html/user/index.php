@@ -32,7 +32,7 @@ if (isset($_POST["fav_usr"])) {
     $now = date("Y-m-d H:i:s");
     $fav_usr = mysqli_real_escape_string($con,$_POST['fav_usr']);
     $fav_figure = mysqli_real_escape_string($con,$_POST['fav_figure']);
-    mysql_query("INSERT INTO user_favorite (user_id, figure_id, create_datetime) VALUES ($fav_user, $fav_figure, '{$now}')");
+    mysql_query("INSERT INTO user_favorite (user_id, figure_id, create_datetime) VALUES ($fav_usr, $fav_figure, '{$now}')");
     $rst = mysql_query("SELECT * FROM figure WHERE figure_id='$fav_figure'");
     $col = mysqli_fetch_assoc($rst);
     $new_favorite = $col["favorite"] + 1;
