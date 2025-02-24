@@ -28,6 +28,7 @@ if (isset($_POST["fav_usr"])) {
     mysql_query("UPDATE figure SET favorite = '{$new_favorite}' WHERE figure_id = $fav_figure");
     header("Location: " . $_SERVER['REQUEST_URI']);
     exit();
+
 }
 
 //order句の作成
@@ -148,16 +149,15 @@ include_once(__DIR__. "/../inc/head.inc");
                 <div class="Element_vertical">
                 <p>重心の位置:</p>
                 <div class="bar-chart-vertical">
+
                 <?php 
-                $total = 0;
+                $total = $col['up_front'] + $col['up_back'] + $col['down_front'] + $col['down_back'] + $col['center_front'] + $col['center_back'];
                 foreach ($_gravity_point as $key => $val) {
-                    $total += $col[$_gravity_to_english[$val]];
-                }
-                foreach ($_gravity_point as $key => $val) {
-                    $percent = $col[$_gravity_to_english[$val]]/$total*100; ?>
+                    $percent = $col[$key]/$total*100; ?>
                     <div class="bar">
-                    <p><?=$col[$_gravity_to_english[$val]]?></p>
+                    <p><?=$col[$key]?></p>
                     <div class="bar-inner" style="<?php echo("height: ".$percent.'%;');?>"></div>
+                    <input type="radio" name="gravity_point" value="<?=$key?>"> 
                     <p><?=$val?></p>
                     </div>
                 <?php } ?>
