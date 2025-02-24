@@ -1,11 +1,10 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
+    display: block;
     justify-content: center;
     align-items: center;
-    height: auto;
+    height: 100vh;
     background-color: #f4f4f9;
 }
 /*横並びの選択肢 */
@@ -70,7 +69,7 @@ body {
 
 /* コンテンツエリア */
 .content {
-    margin-left: 40px;
+    margin-left: 40px; /* メニューが非表示の時 */
     padding: 20px;
     transition: margin-left 0.5s ease;
 }
