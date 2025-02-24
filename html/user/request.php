@@ -5,7 +5,8 @@ ini_set('log_errors', 1);
 ini_set('error_log', '/var/log/php_errors.log');
 
 session_start();
-include_once(__DIR__."/../inc/head.inc");
+include_once(__DIR__. "/../inc/def.inc");
+include_once(__DIR__. "/../inc/function.inc");
 $is_exist = 0;
 if (isset($_SESSION['user_ac_key'])) {
     $ac_key = $_SESSION['user_ac_key'];
@@ -25,7 +26,7 @@ if (isset($_POST['request'])) {
     $memo = isset($_POST['memo']) ? mysqli_real_escape_string($con, $_POST['memo']) : '';    
     mysql_query("INSERT INTO figure_request (name,anime,maker,memo) VALUES ('$name','$anime','$maker','$memo')");
 }
-
+include_once(__DIR__."/../inc/head.inc");
 ?>
 <!-- 左側のメニュー -->
 <div class="sidebar" id="sidebar">

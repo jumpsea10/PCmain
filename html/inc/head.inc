@@ -1,7 +1,3 @@
-<?php
-include_once("def.inc");
-include_once("function.inc");
-?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
