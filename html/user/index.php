@@ -25,6 +25,7 @@ if (isset($_POST["gravity_point"])) {
     $col = mysqli_fetch_assoc($rst);
     $new_gp_cnt = (int)$col[$gp] + 1;
     mysql_query("UPDATE figure SET $gp = '{$new_gp_cnt}' WHERE figure_id = '$figure_id'");
+    unset($_POST['gravity_point']);
 }
 
 //お気に入り登録後の処理
@@ -37,6 +38,7 @@ if (isset($_POST["fav_usr"])) {
     $col = mysqli_fetch_assoc($rst);
     $new_favorite = $col["favorite"] + 1;
     mysql_query("UPDATE figure SET favorite = '{$new_favorite}' WHERE figure_id = '$fav_figure'");
+    unset($_POST['fav_usr']);
 }
 
 //order句の作成
