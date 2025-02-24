@@ -184,7 +184,7 @@ include_once(__DIR__."/../inc/head.inc");
                 <?php } ?>
                 </div>
                 <input type="hidden" name="vote_figure_id" value="<?=$col["figure_id"]?>">
-            <?php if (!empty($_SESSION[$col["figure_id"]])) { ?>
+            <?php if (empty($_SESSION[$col["figure_id"]])) { ?>
                 <button type="submit" class="vote-button" onclick="saveScrollPosition()">投票する</button>
             <?php } ?>
             </form>
