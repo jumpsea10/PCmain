@@ -24,7 +24,7 @@ unset($_SESSION['operator_ac_key']);
         <?php if (isset($login_error_msg)) { ?>
         <p style="color: red; font-size: 13px;"><?=$login_error_msg?></p>
            <?php } ?>
-        <form action="master_load.php" method="POST">
+        <form action="load.php" method="POST">
             <input type="text" name="id" placeholder="ID" required>
             <input type="password" name="password" placeholder="パスワード" required>
             <button type="submit">ログイン</button>
