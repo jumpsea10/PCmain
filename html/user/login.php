@@ -5,13 +5,15 @@ ini_set('log_errors', 1);
 ini_set('error_log', '/var/log/php_errors.log');
 
 session_start();
-include_once(__DIR__. "/../inc/head.inc");
+include_once(__DIR__. "/../inc/def.inc");
+include_once(__DIR__. "/../inc/function.inc");
 $login_error_msg = $_SESSION['login_error'] ?? null;
 $register_error_msg = $_SESSION['register_error'] ?? null;
 unset($_SESSION['register_error']);
 unset($_SESSION['login_error']);
 unset($_SESSION['user_ac_key']);
 $previousPage = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $_ENV['URL_USER_INDEX'];
+include_once(__DIR__. "/../inc/head.inc");
 ?>
     <div class="login-container">
         <h1>ログイン</h1>

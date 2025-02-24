@@ -5,7 +5,8 @@ ini_set('log_errors', 1);
 ini_set('error_log', '/var/log/php_errors.log');
 
 session_start();
-include_once(__DIR__."/../inc/head.inc");
+include_once(__DIR__. "/../inc/def.inc");
+include_once(__DIR__. "/../inc/function.inc");
 $is_exist = 0;
 if (isset($_SESSION['user_ac_key'])) {
     $ac_key = $_SESSION['user_ac_key'];
@@ -18,14 +19,15 @@ if (isset($_SESSION['user_ac_key'])) {
 
 //重心の投票後の処理
 if (isset($_POST["gravity_point"])) {
-    $gp = $_gravity_to_english[$_gravity_point[$_POST["gravity_point"]]];
+    $gp = $_POST["gravity_point"];
     $figure_id = mysqli_real_escape_string($con,$_POST["vote_figure_id"]);
-    $_SESSION[$figure_id] = 1;
-    $rst = mysql_query("SELECT '$gp' FROM figure WHERE figure_id = '$figure_id'");
+    $_SESSION[$figure_id] = 'voted';
+    $rst = mysql_query("SELECT $gp FROM figure WHERE figure_id = '$figure_id'");
     $col = mysqli_fetch_assoc($rst);
-    $new_gp_cnt = (int)$col[$gp] + 1;
+    $new_gp_cnt = $col[$gp] + 1;
     mysql_query("UPDATE figure SET $gp = '{$new_gp_cnt}' WHERE figure_id = '$figure_id'");
-    unset($_POST['gravity_point']);
+    header("Location: " . $_SERVER['REQUEST_URI']);
+    exit();
 }
 
 //お気に入り登録後の処理
@@ -38,7 +40,8 @@ if (isset($_POST["fav_usr"])) {
     $col = mysqli_fetch_assoc($rst);
     $new_favorite = $col["favorite"] + 1;
     mysql_query("UPDATE figure SET favorite = '{$new_favorite}' WHERE figure_id = '$fav_figure'");
-    unset($_POST['fav_usr']);
+    header("Location: " . $_SERVER['REQUEST_URI']);
+    exit();
 }
 
 //order句の作成
@@ -79,6 +82,7 @@ $figures_query = "SELECT * FROM figure WHERE $where ORDER BY $order_by LIMIT 20 
 $figures_result = mysql_query($figures_query);
 
 $max_pages = mysqli_num_rows($figures_result)/20+1;
+include_once(__DIR__."/../inc/head.inc");
 
 ?>
 <!-- 左側のメニュー -->
@@ -168,14 +172,11 @@ $max_pages = mysqli_num_rows($figures_result)/20+1;
                 <div class="bar-chart-vertical">
 
                 <?php 
-                $total = 0;
+                $total = $col['up_front'] + $col['up_back'] + $col['down_front'] + $col['down_back'] + $col['center_front'] + $col['center_back'];
                 foreach ($_gravity_point as $key => $val) {
-                    $total += $col[$_gravity_to_english[$val]];
-                }
-                foreach ($_gravity_point as $key => $val) {
-                    $percent = $col[$_gravity_to_english[$val]]/$total*100; ?>
+                    $percent = $col[$key]/$total*100; ?>
                     <div class="bar">
-                    <p><?=$col[$_gravity_to_english[$val]]?></p>
+                    <p><?=$col[$key]?></p>
                     <div class="bar-inner" style="<?php echo("height: ".$percent.'%;');?>"></div>
                     <input type="radio" name="gravity_point" value="<?=$key?>"> 
                     <p><?=$val?></p>
@@ -183,7 +184,7 @@ $max_pages = mysqli_num_rows($figures_result)/20+1;
                 <?php } ?>
                 </div>
                 <input type="hidden" name="vote_figure_id" value="<?=$col["figure_id"]?>">
-            <?php if (!isset($_SESSION[$col["figure_id"]])) { ?>
+            <?php if (!empty($_SESSION[$col["figure_id"]])) { ?>
                 <button type="submit" class="vote-button" onclick="saveScrollPosition()">投票する</button>
             <?php } ?>
             </form>

@@ -5,7 +5,8 @@ ini_set('log_errors', 1);
 ini_set('error_log', '/var/log/php_errors.log');
 
 session_start();
-include_once(__DIR__. "/../inc/head.inc");
+include_once(__DIR__. "/../inc/def.inc");
+include_once(__DIR__. "/../inc/function.inc");
 $is_exist = 0;
 if (isset($_SESSION['user_ac_key'])) {
     $ac_key = $_SESSION['user_ac_key'];
@@ -25,7 +26,8 @@ if (isset($_POST["fav_usr"])) {
     $col = mysqli_fetch_assoc($rst);
     $new_favorite = $col["favorite"]-1;
     mysql_query("UPDATE figure SET favorite = '{$new_favorite}' WHERE figure_id = $fav_figure");
-    
+    header("Location: " . $_SERVER['REQUEST_URI']);
+    exit();
 }
 
 //order句の作成
@@ -65,7 +67,7 @@ $figures_query = "SELECT * FROM user_favorite LEFT JOIN figure ON figure.figure_
 $figures_result = mysql_query($figures_query);
 
 $max_pages = mysqli_num_rows($figures_result)/20+1;
-
+include_once(__DIR__. "/../inc/head.inc");
 ?>
 <!-- 左側のメニュー -->
 <div class="sidebar" id="sidebar">
