@@ -21,7 +21,7 @@ if (isset($_SESSION['user_ac_key'])) {
 if (isset($_POST["gravity_point"])) {
     $gp = $_POST["gravity_point"];
     $figure_id = mysqli_real_escape_string($con,$_POST["vote_figure_id"]);
-    $_SESSION[$figure_id] = 'voted';
+    $_SESSION["voted_" . $figure_id] = true; 
     $rst = mysql_query("SELECT $gp FROM figure WHERE figure_id = '$figure_id'");
     $col = mysqli_fetch_assoc($rst);
     $new_gp_cnt = $col[$gp] + 1;
@@ -184,7 +184,7 @@ include_once(__DIR__."/../inc/head.inc");
                 <?php } ?>
                 </div>
                 <input type="hidden" name="vote_figure_id" value="<?=$col["figure_id"]?>">
-            <?php if (empty($_SESSION[$col["figure_id"]])) { ?>
+            <?php if (!isset($_SESSION["voted_" . $col["figure_id"]])) { ?>
                 <button type="submit" class="vote-button" onclick="saveScrollPosition()">投票する</button>
             <?php } ?>
             </form>
